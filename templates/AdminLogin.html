@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Voting:Admin</title>
+</head>
+<body>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            background-image: url('static/img/bg.jpg');
+            font-family: 'poppins', sans-serif;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        nav{
+            display: flex;
+            color: white;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #000;
+        }
+        nav a{
+            text-decoration: none;
+            color: white;
+        }
+        .nav-items{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-items a{
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            font-weight: 500;
+        }
+
+        .main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80%;
+        }
+
+        .card{
+            background-color: white;
+            width: 400px;
+            height: 400px;
+            opacity: 0.9;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form{
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            opacity: 0.8;
+        }
+
+        .red{
+            color: red;
+        }
+    </style>
+    <nav>
+        <a href="./index.html"><h1>E-Voter</h1></a>
+    </nav>
+    <div class="main">
+        <div class="card">
+            <div class="login">
+                <form class="form" method="POST" action="/Admin">
+                    <h1>Login as admin</h1><br>
+                    <div class="container">
+                      <label for="uname"><b>Email</b></label>
+                      <input type="text" placeholder="Enter Email" name="email" required>
+                  
+                      <label for="psw"><b>Password</b></label>
+                      <input type="password" placeholder="Enter Password" name="password" required>
+                          
+                      <button class="button" type="submit">Login</button>
+                    </div>
+                </form>
+                {% if msg %}
+                    <label class="red">{{ msg }}</label>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Voting:Admin</title>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            background-image: url('static/img/bg.jpg');
+            font-family: 'poppins', sans-serif;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        nav{
+            display: flex;
+            color: white;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #000;
+            margin-bottom: 30px;
+        }
+        .nav-items{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn{
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: medium;
+            text-decoration: none;
+        }
+        .center{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+            padding: 10px;
+        }
+        .card{
+            background-color: white;
+            width: 400px;
+            height: 400px;
+            opacity: 0.9;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .link{
+            color: black;
+            font-weight: 700;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        .st{
+            font-weight: 700;
+            font-size: 30px;
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+    </style>
+    <nav>
+        <h1>E-Voter</h1>
+        <div class="nav-items">
+            <a href="/logout" class="btn">Logout</a>
+        </div>
+    </nav>
+    <div class="center">
+        {% if msg %}
+        <p class="st">{{msg}}</p>
+        {% endif %}
+        <div class="card">
+            <h1>Admin Panel</h1>
+            <a href="/addcandidate" class="link">Add Candidate</a>
+            <a href="/viewcandidate" class="link">View Candidates</a>
+            <a href="/viewvoter" class="link">View Voters</a>
+            <a href="/startVoting" class="link">Start Voting</a>
+            <a href="/endVoting" class="link">Finish Voting</a>
+            <a href="/result" class="link">Results</a>
+        </div>
+    </div>
+</body>
+</html>

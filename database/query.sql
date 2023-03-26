@@ -1,0 +1,31 @@
+CREATE TABLE candidates (
+  canId INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  fullname VARCHAR(255) NOT NULL,
+  age INT UNSIGNED NOT NULL,
+  party VARCHAR(255) NOT NULL,
+  gender VARCHAR(255) NOT NULL,
+  voterid VARCHAR(255) NOT NULL,
+  aadharno INT UNSIGNED NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phoneno INT UNSIGNED NOT NULL,
+  PRIMARY KEY (canId)
+);
+
+
+CREATE TABLE votersLogin (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+
+CREATE TABLE admin (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+INSERT INTO users (email, password) VALUES ('user@example.com', 'password123');

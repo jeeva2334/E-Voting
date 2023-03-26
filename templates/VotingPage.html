@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Voting:Voting</title>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            background-image: url('static/img/bg.jpg');
+            font-family: 'poppins', sans-serif;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70%;
+            padding: 10px;
+        }
+        table, td, th {  
+        background-color: white;
+        border: 1px solid #ddd;
+        text-align: left;
+        }
+
+        table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        th, td {
+        padding: 15px;
+        }
+        nav{
+            display: flex;
+            color: white;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #000;
+            margin-bottom: 30px;
+        }
+        .nav-items{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn{
+            padding: 10px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+    <nav>
+        <a href="./index.html" style="color: white; text-decoration: none;"><h1>E-Voter</h1></a>
+        <a href="/logout" style="color: white; text-decoration: none;">Logout from {{user}}</a>
+    </nav>
+    <div class="center">
+        <div class="container">
+            <table>
+                <tr>
+                  <th>Candidates</th>
+                  <th></th>
+                </tr>
+                <tr>
+                    <td>Candidate Id</td>
+                    <td>Name</td>
+                    <td>age</td>
+                    <td>party</td>
+                    <td>Vote</td>
+                    <td>Gender</td>
+                </tr>
+                {% for c in can %}
+                <tr>
+                  <td>{{c['canId']}}</td>
+                  <td>{{c['fullname']}}</td>
+                  <td>{{c['age']}}</td>
+                  <td>{{c['party']}}</td>
+                  <td>{{c['gender']}}</td>
+                  <td><a class="btn" href="{{ url_for('vote', email=user, id=c['canId']) }}">Vote</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

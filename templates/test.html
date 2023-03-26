@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" id="container"></div>
+    <script>
+        let account;
+        const connectMetamask = async () =>{
+            if(window.ethereum!=="undefined"){
+                const accounts = await ethereum.request({method:"eth_requestAccounts"});
+                account = accounts[0];
+                console.log(`account is ${account}`);
+            }
+            else{
+                alert("install crypto wallet")
+            }
+        }
+
+        const connectContract = async() => {
+            const ABI = [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "_fullname",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "_age",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_party",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_partyflag",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_gender",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_voterid",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "_aadharno",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_city",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_email",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "_phone",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "regCandidate",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "_fullname",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "_age",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_gender",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_voterid",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "_aadharno",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_city",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_pincode",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_aadharPhoto",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_voteridphote",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_email",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "_phone",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "regVoter",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "candidate",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "canId",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "fullname",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "age",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "party",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "partyflag",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "gender",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "voterid",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "aadharno",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "city",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "email",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "phoneno",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "voteCount",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "getAllCandidates",
+                    "outputs": [
+                        {
+                            "components": [
+                                {
+                                    "internalType": "uint256",
+                                    "name": "canId",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "fullname",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "age",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "party",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "partyflag",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "gender",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "voterid",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "aadharno",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "city",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "email",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "phoneno",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "voteCount",
+                                    "type": "uint256"
+                                }
+                            ],
+                            "internalType": "struct Voter.Candidate[]",
+                            "name": "",
+                            "type": "tuple[]"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "_email",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "getVoter",
+                    "outputs": [
+                        {
+                            "components": [
+                                {
+                                    "internalType": "string",
+                                    "name": "fullname",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "age",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "gender",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "voterid",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "aadharno",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "city",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "pincode",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "aadharPhoto",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "voteridphote",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "email",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "phoneno",
+                                    "type": "uint256"
+                                }
+                            ],
+                            "internalType": "struct Voter.VoterReg",
+                            "name": "",
+                            "type": "tuple"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            ]
+            const contAddress = "0xee035600D599B28084114e1abD2C4fC2465E9541";
+            window.web3 = await new Web3(window.ethereum);
+            window.contract = await new window.web3.eth.Contract(ABI,contAddress);
+            console.log('connection success');
+        }
+        const getCandidate = async ()=> {
+            const candidate = await window.contract.methods.getAllCandidates().call();
+            console.log(candidate);
+        }
+    </script>
+
+    <button onclick="connectContract()">Connect</button>
+    <button onclick="connectMetamask()">Connect Meta</button>
+    <button onclick="getCandidate()">Get Candidate</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.2/web3.min.js" integrity="sha512-Ls8WO4Esu7Jb9a92BfIp1Ftgl9t5Ncaa/6zKzpOkTGXW+dPcJcI4Yz2HR7cXY0YcfIAsL7R9Gqfbw8ERX8iYaA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <img src="https://drive.google.com/file/d/1mBPBfYekqd5W1zlL6m1sXDzvyjZrxPNc/view?usp=sharing" alt="">
+    <img src="{{msg}}" alt="">
+</body>
+</html>
