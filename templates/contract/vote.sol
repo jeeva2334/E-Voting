@@ -20,8 +20,6 @@ contract Voter{
         uint aadharno;
         string city;
         string pincode;
-        string aadharPhoto;
-        string voteridphote;
         string email;
         uint phoneno;
         bool isVoted;
@@ -37,7 +35,6 @@ contract Voter{
         string fullname;
         uint age;
         string party;
-        string partyflag;
         string gender;
         string voterid;
         uint aadharno;
@@ -63,13 +60,11 @@ contract Voter{
         uint _aadharno,
         string memory _city,
         string memory _pincode,
-        string memory _aadharPhoto,
-        string memory _voteridphote,
         string memory _email,
         uint _phone
     ) public {
         require(_age >= 18,"You are not eligible");
-        voterreg[_email] = VoterReg(_fullname,_age,_gender,_voterid,_aadharno,_city,_pincode,_aadharPhoto,_voteridphote,_email,_phone,false);
+        voterreg[_email] = VoterReg(_fullname,_age,_gender,_voterid,_aadharno,_city,_pincode,_email,_phone,false);
         voterCount += 1;
     }
 
@@ -81,7 +76,6 @@ contract Voter{
         string memory _fullname,
         uint _age,
         string memory _party,
-        string memory _partyflag,
         string memory _gender,
         string memory _voterid,
         uint _aadharno,
@@ -91,7 +85,7 @@ contract Voter{
     ) public onlyOwner {
         require(_age >= 25,"You arte not eligible");
         candidateCount += 1;
-        candidate[candidateCount] = Candidate(candidateCount,_fullname,_age,_party,_partyflag,_gender,_voterid,_aadharno,_city,_email,_phone,0);
+        candidate[candidateCount] = Candidate(candidateCount,_fullname,_age,_party,_gender,_voterid,_aadharno,_city,_email,_phone,0);
     }
 
     function getAllCandidates() public view returns(Candidate[] memory){
@@ -141,4 +135,9 @@ contract Voter{
     
         return (winnerName,winnerId);
     }
+
+    function isVStarted() public view returns(bool){
+        return isStated;
+    }
+
 }
